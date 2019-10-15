@@ -9,6 +9,8 @@ import Home from './components/pages/Home/HomePage';
 import Posts from './components/pages/Posts/PostsPage';
 import Contact from './components/pages/Contact/ContactPage';
 import NotFound from './components/pages/NotFound/NotFoundPage';
+import NewPost from './components/pages/NewPost/NewPostPage';
+import SinglePost from './components/pages/SinglePost/SinglePostPage';
 
 class App extends React.Component {
   render() {
@@ -18,6 +20,9 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/posts" exact component={Posts} />
+            <Route path="/contact" exact component={Contact} />
+            <Route path="/contact/new" exact component={NewPost} />
+            <Route path="/contact/:id" exact component={SinglePost} />
             <Route path="/contact" exact component={Contact} />
             <Route component={NotFound} />
           </Switch>
