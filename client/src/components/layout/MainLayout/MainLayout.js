@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from '../../features/Navbar/Navbar';
+import NavBar from '../../features/Navbar/NavBar';
 
 const MainLayout = ({ children }) => (
   <div>
-    <Navbar />
+    <NavBar />
     {children}
   </div>
 );
