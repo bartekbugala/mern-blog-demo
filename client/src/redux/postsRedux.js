@@ -3,6 +3,7 @@ import { API_URL } from '../config';
 
 //// Selectors
 export const getPosts = ({ posts }) => posts;
+export const countPosts = ({ posts }) => posts.length;
 
 //// Thunks
 export const loadPostsRequest = () => {

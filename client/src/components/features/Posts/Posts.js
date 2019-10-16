@@ -6,7 +6,6 @@ class Posts extends React.Component {
     const { loadPosts } = this.props;
     loadPosts();
   }
-
   render() {
     const { posts } = this.props;
 
