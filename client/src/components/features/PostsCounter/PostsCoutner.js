@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 class PostsCounter extends React.Component {
   render() {
     const { postsCount } = this.props;
-    return <div>Posts amount: {postsCount > 0 ? postsCount : '- no posts -'}</div>;
+    return <div>Posts amount: {postsCount === 0 ? '- no posts -' : postsCount}</div>;
   }
 }
 
