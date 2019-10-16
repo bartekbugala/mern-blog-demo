@@ -1,15 +1,20 @@
+import axios from 'axios';
+import { API_URL } from '../config';
+
 //// Selectors
 export const getPosts = ({ posts }) => posts;
 
 //// Thunks
 export const loadPostsRequest = () => {
   return dispatch => {
-    console.log('Request started...');
-    setTimeout(() => {
-      const arr = [{ id: 'a3fssdc1', title: 'Test', content: 'Lorem Ipsum' }];
-      dispatch(loadPosts(arr));
-      console.log('Request finished after 2sec!');
-    }, 2000);
+    axios
+      .get(`${API_URL}/posts`)
+      .then(res => {
+        dispatch(loadPosts(res.data));
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
   };
 };
 
