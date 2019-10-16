@@ -1,26 +1,31 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+// main layout
+import MainLayout from './components/layout/MainLayout/MainLayout';
+
+// routes
+import Home from './components/pages/Home/HomePage';
+import Posts from './components/pages/Posts/PostsPage';
+import Contact from './components/pages/Contact/ContactPage';
+import NotFound from './components/pages/NotFound/NotFoundPage';
+import NewPost from './components/pages/NewPost/NewPostPage';
+import SinglePost from './components/pages/SinglePost/SinglePostPage';
 
 class App extends React.Component {
-  state = {
-    posts: []
-  };
-
-  componentDidMount() {
-    fetch('http://localhost:8000/api/posts')
-      .then(res => res.json())
-      .then(res => {
-        this.setState({ posts: res });
-      });
-  }
-
   render() {
     return (
       <div>
-        <ul>
-          {this.state.posts.map(post => (
-            <li key={post.id}>{post.title}</li>
-          ))}
-        </ul>
+        <MainLayout>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/posts" exact component={Posts} />
+            <Route path="/contact" exact component={Contact} />
+            <Route path="/posts/new" exact component={NewPost} />
+            <Route path="/posts/:id" exact component={SinglePost} />
+            <Route component={NotFound} />
+          </Switch>
+        </MainLayout>
       </div>
     );
   }
