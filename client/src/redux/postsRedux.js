@@ -6,15 +6,13 @@ export const getPosts = ({ posts }) => posts;
 
 //// Thunks
 export const loadPostsRequest = () => {
-  return dispatch => {
-    axios
-      .get(`${API_URL}/posts`)
-      .then(res => {
-        dispatch(loadPosts(res.data));
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
+  return async dispatch => {
+    try {
+      let res = await axios.get(`${API_URL}/posts`);
+      dispatch(loadPosts(res.data));
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 };
 
