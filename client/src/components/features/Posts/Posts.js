@@ -14,10 +14,10 @@ class Posts extends React.Component {
 
     return (
       <div>
-        {!request.pending && request.success && posts.length > 0 && <PostsList posts={posts} />}
         {(request.pending || request.success === null) && <Spinner />}
-        {!request.pending && request.error !== null && <Alert variant="error">Error message: {request.error}</Alert>}
+        {!request.pending && request.error !== null && <Alert variant="error">Error: {request.error}</Alert>}
         {!request.pending && request.success && posts.length === 0 && <Alert variant="info">No posts</Alert>}
+        {!request.pending && request.success && posts.length > 0 && <PostsList posts={posts} />}
       </div>
     );
   }

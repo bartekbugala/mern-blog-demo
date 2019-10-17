@@ -15,8 +15,10 @@ export const loadPostsRequest = () => {
       await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(loadPosts(res.data));
       dispatch(endRequest());
+      // TESTING error message //////////////////////////////////////////
+      throw new Error('TEST ERROR MESSAGE');
     } catch (e) {
-      dispatch(endRequest(e.message));
+      dispatch(errorRequest(e.message));
     }
   };
 };
@@ -51,11 +53,15 @@ export const errorRequest = error => ({ error, type: ERROR_REQUEST });
 export default function reducer(statePart = initialState, action = {}) {
   switch (action.type) {
     case LOAD_POSTS:
-      return { ...statePart, data: action.payload };
+      // TESTING no posts ////////////////////////////////////////////////
+      return { ...statePart, data: action.payload /* data: [] */ };
     case START_REQUEST:
       return { ...statePart, request: { pending: true, error: null, success: null } };
     case END_REQUEST:
-      return { ...statePart, request: { pending: false, error: null, success: true } };
+      // TESTING loading spinner //////////////////////////////////////////
+      return { ...statePart, request: { pending: false /* pending: true */, error: null, success: true } };
+    case ERROR_REQUEST:
+      return { ...statePart, request: { pending: false, error: action.error, success: true } };
     default:
       return statePart;
   }
