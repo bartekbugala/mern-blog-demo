@@ -16,7 +16,7 @@ export const loadPostsRequest = () => {
       dispatch(loadPosts(res.data));
       dispatch(endRequest());
       // TESTING error message //////////////////////////////////////////
-      throw new Error('TEST ERROR MESSAGE');
+      // throw new Error('TEST ERROR MESSAGE');
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
