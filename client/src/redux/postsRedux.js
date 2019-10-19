@@ -3,6 +3,7 @@ import { API_URL } from '../config';
 
 //// Selectors
 export const getPosts = ({ posts }) => posts.data;
+export const getSinglePost = ({ posts }, postId) => posts.data.filter(el => el.id === postId);
 export const countPosts = ({ posts }) => posts.data.length;
 export const getRequest = ({ posts }) => posts.request;
 
@@ -12,7 +13,7 @@ export const loadPostsRequest = () => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      await new Promise((resolve, reject) => setTimeout(resolve, 100));
       dispatch(loadPosts(res.data));
       dispatch(endRequest());
       // TESTING error message //////////////////////////////////////////

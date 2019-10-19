@@ -11,7 +11,7 @@ const PostSummary = ({ id, title, content }) => (
   <article className="post-summary">
     <SmallTitle>{title}</SmallTitle>
     <HtmlBox>{cutText(content, 250)}</HtmlBox>
-    <Link to="/posts/:id">
+    <Link to={`/posts/${id}`}>
       <Button variant="primary">Read more</Button>
     </Link>
   </article>

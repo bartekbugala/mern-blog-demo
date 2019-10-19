@@ -1,13 +1,15 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import PostSummary from '../PostSummary/PostSummary';
+import SmallTitle from '../../common/SmallTitle/SmallTitle';
+import HtmlBox from '../../common/HtmlBox/HtmlBox';
 
 const PostsList = ({ posts }) => (
   <div>
     <section className="posts-list">
-      {posts.map(post => (
-        <PostSummary key={post.id} {...post} />
-      ))}
+      <article className="post-summary">
+        <SmallTitle>{posts[0].title}</SmallTitle>
+        <HtmlBox>{posts[0].content}</HtmlBox>
+      </article>
     </section>
   </div>
 );
