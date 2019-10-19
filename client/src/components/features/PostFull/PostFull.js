@@ -7,21 +7,19 @@ const PostsList = ({ posts }) => (
   <div>
     <section className="posts-list">
       <article className="post-summary">
-        <SmallTitle>{posts[0].title}</SmallTitle>
-        <HtmlBox>{posts[0].content}</HtmlBox>
+        <SmallTitle>{posts.title}</SmallTitle>
+        <HtmlBox>{posts.content}</HtmlBox>
       </article>
     </section>
   </div>
 );
 
 PostsList.propTypes = {
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired
-    })
-  )
+  posts: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
+  })
 };
 
 export default PostsList;

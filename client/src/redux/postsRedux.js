@@ -3,7 +3,7 @@ import { API_URL } from '../config';
 
 //// Selectors
 export const getPosts = ({ posts }) => posts.data;
-export const getSinglePost = ({ posts }, postId) => posts.data.filter(el => el.id === postId);
+export const getSinglePost = ({ posts }) => posts.singlePost;
 export const countPosts = ({ posts }) => posts.data.length;
 export const getRequest = ({ posts }) => posts.request;
 
@@ -24,9 +24,26 @@ export const loadPostsRequest = () => {
   };
 };
 
+export const loadSinglePostRequest = id => {
+  return async dispatch => {
+    dispatch(startRequest());
+    try {
+      let res = await axios.get(`${API_URL}/posts/${id}`);
+      await new Promise((resolve, reject) => setTimeout(resolve, 0));
+      dispatch(loadPosts(res.data));
+      dispatch(endRequest());
+      // TESTING error message //////////////////////////////////////////
+      // throw new Error('TEST ERROR MESSAGE');
+    } catch (e) {
+      dispatch(errorRequest(e.message));
+    }
+  };
+};
+
 //// Initial state
 const initialState = {
   data: [],
+  singlePost: {},
   request: {
     pending: false,
     error: null,
@@ -41,11 +58,13 @@ const createActionName = name => `app/${reducerName}/${name}`;
 
 // action exports
 export const LOAD_POSTS = createActionName('LOAD_POSTS');
+export const LOAD_SINGLE_POST = createActionName('LOAD_SINGLE_POST');
 export const START_REQUEST = createActionName('START_REQUEST');
 export const END_REQUEST = createActionName('END_REQUEST');
 export const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
+export const loadSinglePost = payload => ({ payload, type: LOAD_SINGLE_POST });
 export const startRequest = () => ({ type: START_REQUEST });
 export const endRequest = () => ({ type: END_REQUEST });
 export const errorRequest = error => ({ error, type: ERROR_REQUEST });
@@ -56,6 +75,9 @@ export default function reducer(statePart = initialState, action = {}) {
     case LOAD_POSTS:
       // TESTING no posts ////////////////////////////////////////////////
       return { ...statePart, data: action.payload /* data: [] */ };
+    case LOAD_SINGLE_POST:
+      // TESTING no posts ////////////////////////////////////////////////
+      return { ...statePart, singlePost: action.payload /* singlePost: {} */ };
     case START_REQUEST:
       return { ...statePart, request: { pending: true, error: null, success: null } };
     case END_REQUEST:
