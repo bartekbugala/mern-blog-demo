@@ -13,7 +13,7 @@ export const loadPostsRequest = () => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 100));
+      await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       dispatch(loadPosts(res.data));
       dispatch(endRequest());
       // TESTING error message //////////////////////////////////////////
