@@ -16,8 +16,6 @@ export const loadPostsRequest = () => {
       await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       dispatch(loadPosts(res.data));
       dispatch(endRequest());
-      // TESTING error message //////////////////////////////////////////
-      // throw new Error('TEST ERROR MESSAGE');
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
@@ -32,8 +30,6 @@ export const loadSinglePostRequest = id => {
       await new Promise((resolve, reject) => setTimeout(resolve, 1000));
       dispatch(loadSinglePost(res.data));
       dispatch(endRequest());
-      // TESTING error message //////////////////////////////////////////
-      // throw new Error('TEST ERROR MESSAGE');
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
@@ -73,16 +69,13 @@ export const errorRequest = error => ({ error, type: ERROR_REQUEST });
 export default function reducer(statePart = initialState, action = {}) {
   switch (action.type) {
     case LOAD_POSTS:
-      // TESTING no posts ////////////////////////////////////////////////
-      return { ...statePart, data: action.payload /* data: [] */ };
+      return { ...statePart, data: action.payload };
     case LOAD_SINGLE_POST:
-      // TESTING no posts ////////////////////////////////////////////////
-      return { ...statePart, singlePost: action.payload /* singlePost: {} */ };
+      return { ...statePart, singlePost: action.payload };
     case START_REQUEST:
       return { ...statePart, request: { pending: true, error: null, success: null } };
     case END_REQUEST:
-      // TESTING loading spinner //////////////////////////////////////////
-      return { ...statePart, request: { pending: false /* pending: true */, error: null, success: true } };
+      return { ...statePart, request: { pending: false, error: null, success: true } };
     case ERROR_REQUEST:
       return { ...statePart, request: { pending: false, error: action.error, success: true } };
     default:
