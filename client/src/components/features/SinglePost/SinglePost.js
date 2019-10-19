@@ -15,8 +15,10 @@ class SinglePost extends React.Component {
       <div>
         {(request.pending || request.success === null) && <Spinner />}
         {!request.pending && request.error !== null && <Alert variant="error">Error: {request.error}</Alert>}
-        {!request.pending && request.success && post === null && <Alert variant="info">No post</Alert>}
-        {!request.pending && request.success && post && <PostFull posts={post} />}
+        {!request.pending && request.success && (Object.entries(post).length === 0 && post.constructor === Object) && (
+          <Alert variant="info">No post</Alert>
+        )}
+        {!request.pending && request.success && Object.entries(post).length !== 0 && <PostFull post={post} />}
       </div>
     );
   }
@@ -24,9 +26,9 @@ class SinglePost extends React.Component {
 
 SinglePost.propTypes = {
   post: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
+    id: PropTypes.string,
+    title: PropTypes.string,
+    content: PropTypes.string
   }),
   loadSinglePost: PropTypes.func.isRequired
 };

@@ -3,20 +3,20 @@ import { PropTypes } from 'prop-types';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 
-const PostsList = ({ posts }) => (
+const PostsList = ({ post }) => (
   <div>
     <section className="posts-list">
       <article className="post-summary">
-        <SmallTitle>{posts.title}</SmallTitle>
-        <HtmlBox>{posts.content}</HtmlBox>
+        <SmallTitle>{post.title}</SmallTitle>
+        <HtmlBox>{post.content}</HtmlBox>
       </article>
     </section>
   </div>
 );
 
 PostsList.propTypes = {
-  posts: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+  post: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired
   })

@@ -77,7 +77,7 @@ export default function reducer(statePart = initialState, action = {}) {
       return { ...statePart, data: action.payload /* data: [] */ };
     case LOAD_SINGLE_POST:
       // TESTING no posts ////////////////////////////////////////////////
-      return { ...statePart, singlePost: action.payload /* singlePost: {} */ };
+      return { ...statePart, singlePost: {} /* singlePost: {} */ };
     case START_REQUEST:
       return { ...statePart, request: { pending: true, error: null, success: null } };
     case END_REQUEST:
