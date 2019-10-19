@@ -27,6 +27,7 @@ class SinglePost extends React.Component {
 SinglePost.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.string,
+    author: PropTypes.string,
     title: PropTypes.string,
     content: PropTypes.string
   }),

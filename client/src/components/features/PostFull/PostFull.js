@@ -9,6 +9,7 @@ const PostsList = ({ post }) => (
       <article className="post-summary">
         <SmallTitle>{post.title}</SmallTitle>
         <HtmlBox>{post.content}</HtmlBox>
+        <p>Author: {post.author}</p>
       </article>
     </section>
   </div>
@@ -17,6 +18,7 @@ const PostsList = ({ post }) => (
 PostsList.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.string,
+    author: PropTypes.string,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired
   })
