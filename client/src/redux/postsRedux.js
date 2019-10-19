@@ -29,8 +29,8 @@ export const loadSinglePostRequest = id => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts/${id}`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 0));
-      dispatch(loadPosts(res.data));
+      await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+      dispatch(loadSinglePost(res.data));
       dispatch(endRequest());
       // TESTING error message //////////////////////////////////////////
       // throw new Error('TEST ERROR MESSAGE');
