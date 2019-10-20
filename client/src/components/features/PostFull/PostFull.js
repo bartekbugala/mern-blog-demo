@@ -17,8 +17,12 @@ const PostsList = ({ post }) => (
 
 PostsList.propTypes = {
   post: PropTypes.shape({
+<<<<<<< HEAD
     id: PropTypes.string,
     author: PropTypes.string,
+=======
+    id: PropTypes.string.isRequired,
+>>>>>>> task-30-8
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired
   })
