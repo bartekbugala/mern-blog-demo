@@ -14,13 +14,13 @@ import './PostForm.scss';
 
 class PostForm extends React.Component {
   state = {
-    request: {},
     post: {
       title: '',
       author: '',
       content: ''
     }
   };
+
   handleChange = e => {
     const { post } = this.state;
     this.setState({ post: { ...post, [e.target.name]: e.target.value } });
@@ -29,25 +29,24 @@ class PostForm extends React.Component {
     const { post } = this.state;
     this.setState({ post: { ...post, content: text.trim() } });
   };
+
   addPost = e => {
+    e.preventDefault();
     const { addPost } = this.props;
     const { post } = this.state;
-    const { request } = this.props;
-    e.preventDefault();
     if (post.content.trim().length === 0 || post.content === '<p><br></p>') {
       return;
     }
-    this.setState({ request: request });
     addPost(post);
   };
 
   render() {
     const { post } = this.state;
     const { handleChange, handleEditor, addPost } = this;
-    const { request } = this.state;
+    const { request } = this.props;
 
     if (request.error) return <Alert variant="error">{request.error}</Alert>;
-    else if (request.success && post.content !== '') return <Alert variant="success">Post has been added!</Alert>;
+    else if (request.success) return <Alert variant="success">Post has been added!</Alert>;
     else if (request.pending) return <Spinner />;
     else
       return (
