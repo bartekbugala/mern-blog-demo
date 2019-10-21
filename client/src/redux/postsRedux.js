@@ -43,8 +43,9 @@ export const addPostRequest = post => {
     dispatch(startRequest());
     try {
       await axios.post(`${API_URL}/posts`, post);
-      await new Promise((resolve, reject) => setTimeout(resolve, 1000)); // REMOVE ME
-      dispatch(endRequest());
+      await new Promise((resolve, reject) => {
+        dispatch(endRequest());
+      });
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
