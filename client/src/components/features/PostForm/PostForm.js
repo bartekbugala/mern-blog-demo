@@ -1,6 +1,5 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-//import { connect } from 'react-redux';
 
 import TextField from '../../common/TextField/TextField';
 import SectionTitle from '../../common/SectionTitle/SectionTitle';
@@ -15,6 +14,7 @@ import './PostForm.scss';
 
 class PostForm extends React.Component {
   state = {
+    request: {},
     post: {
       title: '',
       author: '',
@@ -27,35 +27,54 @@ class PostForm extends React.Component {
   };
   handleEditor = text => {
     const { post } = this.state;
-    this.setState({ post: { ...post, content: text } });
+    this.setState({ post: { ...post, content: text.trim() } });
   };
   addPost = e => {
     const { addPost } = this.props;
     const { post } = this.state;
-
+    const { request } = this.props;
     e.preventDefault();
+    if (post.content.trim().length === 0 || post.content === '<p><br></p>') {
+      return;
+    }
+    this.setState({ request: request });
     addPost(post);
   };
 
   render() {
     const { post } = this.state;
     const { handleChange, handleEditor, addPost } = this;
-    const { request } = this.props;
+    const { request } = this.state;
 
     if (request.error) return <Alert variant="error">{request.error}</Alert>;
-    else if (request.success) return <Alert variant="success">Post has been added!</Alert>;
+    else if (request.success && post.content !== '') return <Alert variant="success">Post has been added!</Alert>;
     else if (request.pending) return <Spinner />;
     else
       return (
         <form onSubmit={addPost}>
-          <TextField label="Title" value={post.title} onChange={handleChange} name="title" />
-          <TextField label="Author" value={post.author} onChange={handleChange} name="author" />
+          <TextField label="Title" value={post.title} onChange={handleChange} name="title" required />
+          <TextField label="Author" value={post.author} onChange={handleChange} name="author" required />
           <SectionTitle>Edit post content</SectionTitle>
           <Editor
             className="content-editor"
             text={post.content}
             onChange={handleEditor}
-            options={{ placeholder: true, toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'] } }}
+            options={{
+              placeholder: true,
+              toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'] },
+              disableExtraSpaces: true,
+              disableDoubleReturn: true,
+              paste: {
+                /* This example includes the default options for paste,
+                   if nothing is passed this is what it used */
+                forcePlainText: false,
+                cleanPastedHTML: true,
+                cleanReplacements: [],
+                cleanAttrs: ['class', 'style', 'dir'],
+                cleanTags: ['meta'],
+                unwrapTags: []
+              }
+            }}
           />
 
           <Button variant="primary">Add post</Button>
