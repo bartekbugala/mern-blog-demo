@@ -57,7 +57,7 @@ export const updatePostRequest = (post, id) => {
   return async dispatch => {
     dispatch(startRequest());
     try {
-      await axios.post(`${API_URL}/posts/${id}`, post);
+      await axios.patch(`${API_URL}/posts/${id}`, post);
       await new Promise((resolve, reject) => {
         dispatch(endRequest());
       });

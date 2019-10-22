@@ -49,15 +49,14 @@ exports.addPost = async (req, res) => {
 
 exports.editPost = async (req, res) => {
   try {
-    const { title, author, content, id } = req.body;
-    console.log(req.body);
+    const { title, author, content } = req.body;
     /*     let newPost = new Post();
     newPost.title = title;
     newPost.author = author;
     newPost.content = content; */
     //let newPost = new Post(req.body);
 
-    const postUpdated = await Post.findOneAndUpdate({ id: id }, { title: title, author: author, content: content });
+    const postUpdated = await Post.findOneAndUpdate({ id: req.params.id }, { title: title, author: author, content: content });
     res.status(200).json(postUpdated);
   } catch (err) {
     res.status(500).json(err);

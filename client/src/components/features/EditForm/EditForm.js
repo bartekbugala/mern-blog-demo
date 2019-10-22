@@ -28,7 +28,7 @@ class EditForm extends React.Component {
 
   componentDidMount() {
     const { resetRequest } = this.props;
-    //resetRequest();
+    resetRequest();
   }
 
   handleChange = e => {
@@ -37,29 +37,28 @@ class EditForm extends React.Component {
   };
   handleEditor = text => {
     const { post } = this.state;
-    this.setState({ post: { ...post, content: text.trim() } });
+    this.setState({ post: { ...post, content: text/* .trim() */ } });
   };
 
   updatePost = e => {
     e.preventDefault();
     const { updatePost } = this.props;
     const { post } = this.state;
-    if (post.content.trim().length === 0 || post.content === '<p><br></p>') {
+/*     if (post.content.trim().length === 0 || post.content === '<p><br></p>') {
       return;
-    }
+    } */
     updatePost(post);
   };
 
   render() {
     const { post } = this.state;
     const { handleChange, handleEditor, updatePost } = this;
-    let { request } = this.props;
-    request = { error: null };
+    const  {request} = this.props;  
 
     if (request.error) return <Alert variant="error">{request.error}</Alert>;
     else if (request.success) return <Alert variant="success">Post has been added!</Alert>;
     else if (request.pending) return <Spinner />;
-    else
+    else 
       return (
         <form onSubmit={updatePost}>
           <TextField label="Title" value={post.title} onChange={handleChange} name="title" required />
