@@ -40,7 +40,7 @@ exports.addPost = async (req, res) => {
     //let newPost = new Post(req.body);
     newPost.id = uuid();
 
-    postSaved = await newPost.save();
+    const postSaved = await newPost.save();
     res.status(200).json(postSaved);
   } catch (err) {
     res.status(500).json(err);
@@ -49,17 +49,16 @@ exports.addPost = async (req, res) => {
 
 exports.editPost = async (req, res) => {
   try {
-    const { title, author, content } = req.body;
+    const { title, author, content, id } = req.body;
 
-    let newPost = new Post();
+    /*     let newPost = new Post();
     newPost.title = title;
     newPost.author = author;
-    newPost.content = content;
+    newPost.content = content; */
     //let newPost = new Post(req.body);
-    newPost.id = uuid();
 
-    postSaved = await newPost.save();
-    res.status(200).json(postSaved);
+    const postUpdated = await Post.findOneAndUpdate({ id: id }, { title: title, author: author, content: content });
+    res.status(200).json(postUpdated);
   } catch (err) {
     res.status(500).json(err);
   }

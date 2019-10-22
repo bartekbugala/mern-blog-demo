@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 
-const PostsList = ({ post }) => (
+const PostFull = ({ post }) => (
   <div>
     <section className="posts-list">
       <article className="post-summary">
@@ -23,4 +23,4 @@ PostsList.propTypes = {
   })
 };
 
-export default PostsList;
+export default PostFull;
