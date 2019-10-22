@@ -26,8 +26,8 @@ class EditForm extends React.Component {
   }
 
   componentDidMount() {
-    const { resetRequest } = this.props;
-    resetRequest();
+    //const { resetRequest } = this.props;
+    //resetRequest();
   }
 
   handleChange = e => {
