@@ -15,13 +15,12 @@ import '../PostForm/PostForm.scss';
 class EditForm extends React.Component {
   constructor(props) {
     super(props);
-    const { post } = this.props;
+    const { postGot } = this.props;
     this.state = {
       post: {
-        title: post.title,
-        author: post.author,
-        content: post.content,
-        id: post.id
+        title: postGot.title,
+        author: postGot.author,
+        content: postGot.content
       }
     };
   }
@@ -37,14 +36,14 @@ class EditForm extends React.Component {
   };
   handleEditor = text => {
     const { post } = this.state;
-    this.setState({ post: { ...post, content: text/* .trim() */ } });
+    this.setState({ post: { ...post, content: text /* .trim() */ } });
   };
 
   updatePost = e => {
     e.preventDefault();
     const { updatePost } = this.props;
     const { post } = this.state;
-/*     if (post.content.trim().length === 0 || post.content === '<p><br></p>') {
+    /*     if (post.content.trim().length === 0 || post.content === '<p><br></p>') {
       return;
     } */
     updatePost(post);
@@ -53,12 +52,12 @@ class EditForm extends React.Component {
   render() {
     const { post } = this.state;
     const { handleChange, handleEditor, updatePost } = this;
-    const  {request} = this.props;  
+    const { request } = this.props;
 
     if (request.error) return <Alert variant="error">{request.error}</Alert>;
-    else if (request.success) return <Alert variant="success">Post has been added!</Alert>;
+    if (request.success) return <Alert variant="success">Post has been added!</Alert>;
     else if (request.pending) return <Spinner />;
-    else 
+    else
       return (
         <form onSubmit={updatePost}>
           <TextField label="Title" value={post.title} onChange={handleChange} name="title" required />
