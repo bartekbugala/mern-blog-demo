@@ -15,12 +15,12 @@ import '../PostForm/PostForm.scss';
 class EditForm extends React.Component {
   constructor(props) {
     super(props);
-    const { postGot } = this.props;
+    const { post } = this.props;
     this.state = {
       post: {
-        title: postGot.title,
-        author: postGot.author,
-        content: postGot.content
+        title: post.title,
+        author: post.author,
+        content: post.content
       }
     };
   }
@@ -50,44 +50,44 @@ class EditForm extends React.Component {
   };
 
   render() {
-    const { post } = this.state;
+    const { post } = this.props;
     const { handleChange, handleEditor, updatePost } = this;
     const { request } = this.props;
 
-    if (request.error) return <Alert variant="error">{request.error}</Alert>;
+    /* if (request.error) return <Alert variant="error">{request.error}</Alert>;
     if (request.success) return <Alert variant="success">Post has been added!</Alert>;
     else if (request.pending) return <Spinner />;
-    else
-      return (
-        <form onSubmit={updatePost}>
-          <TextField label="Title" value={post.title} onChange={handleChange} name="title" required />
-          <TextField label="Author" value={post.author} onChange={handleChange} name="author" required />
-          <SectionTitle>Edit post content</SectionTitle>
-          <Editor
-            className="content-editor"
-            text={post.content}
-            onChange={handleEditor}
-            options={{
-              placeholder: true,
-              toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'] },
-              disableExtraSpaces: true,
-              disableDoubleReturn: true,
-              paste: {
-                /* This example includes the default options for paste,
+    else */
+    return (
+      <form onSubmit={updatePost}>
+        <TextField label="Title" value={post.title} onChange={handleChange} name="title" required />
+        <TextField label="Author" value={post.author} onChange={handleChange} name="author" required />
+        <SectionTitle>Edit post content</SectionTitle>
+        <Editor
+          className="content-editor"
+          text={post.content}
+          onChange={handleEditor}
+          options={{
+            placeholder: true,
+            toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'] },
+            disableExtraSpaces: true,
+            disableDoubleReturn: true,
+            paste: {
+              /* This example includes the default options for paste,
                    if nothing is passed this is what it used */
-                forcePlainText: false,
-                cleanPastedHTML: true,
-                cleanReplacements: [],
-                cleanAttrs: ['class', 'style', 'dir'],
-                cleanTags: ['meta'],
-                unwrapTags: []
-              }
-            }}
-          />
+              forcePlainText: false,
+              cleanPastedHTML: true,
+              cleanReplacements: [],
+              cleanAttrs: ['class', 'style', 'dir'],
+              cleanTags: ['meta'],
+              unwrapTags: []
+            }
+          }}
+        />
 
-          <Button variant="primary">Add post</Button>
-        </form>
-      );
+        <Button variant="primary">Add post</Button>
+      </form>
+    );
   }
 }
 EditForm.propTypes = {

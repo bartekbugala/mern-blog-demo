@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getSinglePost, getRequest, loadEditPostRequest } from '../../../redux/postsRedux';
+import { getSinglePost, getRequest, loadSinglePostRequest } from '../../../redux/postsRedux';
 import EditPost from './EditPost';
 
 const mapStateToProps = state => ({
@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
   request: getRequest(state)
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadSinglePost: () => dispatch(loadEditPostRequest(ownProps.postId))
+  loadSinglePost: () => dispatch(loadSinglePostRequest(ownProps.postId))
 });
 
 export default connect(

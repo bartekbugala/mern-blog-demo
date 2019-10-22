@@ -13,10 +13,8 @@ export const loadPostsRequest = () => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts`);
-      await new Promise((resolve, reject) => {
-        dispatch(loadPosts(res.data));
-        dispatch(endRequest());
-      });
+      dispatch(loadPosts(res.data));
+      dispatch(endRequest());
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
@@ -28,25 +26,8 @@ export const loadSinglePostRequest = id => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts/${id}`);
-      await new Promise((resolve, reject) => {
-        dispatch(loadSinglePost(res.data));
-        dispatch(endRequest());
-      });
-    } catch (e) {
-      dispatch(errorRequest(e.message));
-    }
-  };
-};
-
-export const loadEditPostRequest = id => {
-  return async dispatch => {
-    dispatch(startRequest());
-    try {
-      let res = await axios.get(`${API_URL}/posts/${id}/edit`);
-      await new Promise((resolve, reject) => {
-        dispatch(loadSinglePost(res.data));
-        dispatch(endRequest());
-      });
+      dispatch(loadSinglePost(res.data));
+      dispatch(endRequest());
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
@@ -58,9 +39,7 @@ export const updatePostRequest = (post, id) => {
     dispatch(startRequest());
     try {
       await axios.patch(`${API_URL}/posts/${id}`, post);
-      await new Promise((resolve, reject) => {
-        dispatch(endRequest());
-      });
+      dispatch(endRequest());
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
@@ -72,9 +51,7 @@ export const addPostRequest = post => {
     dispatch(startRequest());
     try {
       await axios.post(`${API_URL}/posts`, post);
-      await new Promise((resolve, reject) => {
-        dispatch(endRequest());
-      });
+      dispatch(endRequest());
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
