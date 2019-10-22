@@ -16,7 +16,6 @@ class EditForm extends React.Component {
   constructor(props) {
     super(props);
     const { post } = this.props;
-    const { updatePost } = this.props;
     this.state = {
       post: {
         title: post.title,
