@@ -8,6 +8,10 @@ router.route('/posts').get(PostController.getPosts);
 
 router.route('/posts/:id').get(PostController.getSinglePost);
 
+router.route('/posts/:id/edit').get(PostController.getEditPost);
+
+router.route('/posts/:id/edit').post(PostController.editPost);
+
 // add posts
 router.route('/posts').post(PostController.addPost);
 

@@ -38,6 +38,35 @@ export const loadSinglePostRequest = id => {
   };
 };
 
+export const loadEditPostRequest = id => {
+  return async dispatch => {
+    dispatch(startRequest());
+    try {
+      let res = await axios.get(`${API_URL}/posts/${id}/edit`);
+      await new Promise((resolve, reject) => {
+        dispatch(loadSinglePost(res.data));
+        dispatch(endRequest());
+      });
+    } catch (e) {
+      dispatch(errorRequest(e.message));
+    }
+  };
+};
+
+export const updatePostRequest = (post, id) => {
+  return async dispatch => {
+    dispatch(startRequest());
+    try {
+      await axios.post(`${API_URL}/posts/${id}/edit`, post);
+      await new Promise((resolve, reject) => {
+        dispatch(endRequest());
+      });
+    } catch (e) {
+      dispatch(errorRequest(e.message));
+    }
+  };
+};
+
 export const addPostRequest = post => {
   return async dispatch => {
     dispatch(startRequest());
