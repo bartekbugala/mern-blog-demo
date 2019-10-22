@@ -15,7 +15,7 @@ const PostFull = ({ post }) => (
   </div>
 );
 
-PostsList.propTypes = {
+PostFull.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
