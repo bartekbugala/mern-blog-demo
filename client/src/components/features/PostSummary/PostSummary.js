@@ -14,9 +14,6 @@ const PostSummary = ({ id, author, title, content }) => (
     <Link to={`/posts/${id}`}>
       <Button variant="primary">Read more</Button>
     </Link>
-    <Link to={`/posts/${id}/edit`}>
-      <Button variant="danger">Edit post</Button>
-    </Link>
     <p>Author: {author}</p>
   </article>
 );
