@@ -50,7 +50,7 @@ exports.addPost = async (req, res) => {
 exports.editPost = async (req, res) => {
   try {
     const { title, author, content, id } = req.body;
-
+    console.log(req.body);
     /*     let newPost = new Post();
     newPost.title = title;
     newPost.author = author;

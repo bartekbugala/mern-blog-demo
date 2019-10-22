@@ -3,7 +3,7 @@ import { getRequest, updatePostRequest, resetRequest } from '../../../redux/post
 import EditForm from './EditForm';
 
 const mapStateToProps = state => ({
-  request: { error: false } /*getRequest(state)*/
+  request: getRequest(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -20,14 +20,15 @@ class EditForm extends React.Component {
       post: {
         title: post.title,
         author: post.author,
-        content: post.content
+        content: post.content,
+        id: post.id
       }
     };
   }
 
   componentDidMount() {
     const { resetRequest } = this.props;
-    resetRequest();
+    //resetRequest();
   }
 
   handleChange = e => {
@@ -52,7 +53,8 @@ class EditForm extends React.Component {
   render() {
     const { post } = this.state;
     const { handleChange, handleEditor, updatePost } = this;
-    const { request } = this.props;
+    let { request } = this.props;
+    request = { error: null };
 
     if (request.error) return <Alert variant="error">{request.error}</Alert>;
     else if (request.success) return <Alert variant="success">Post has been added!</Alert>;
@@ -91,8 +93,8 @@ class EditForm extends React.Component {
   }
 }
 EditForm.propTypes = {
-  request: PropTypes.object.isRequired,
-  updatePost: PropTypes.func.isRequired
+  request: PropTypes.object /* .isRequired */,
+  updatePost: PropTypes.func /* .isRequired */
 };
 
 export default EditForm;
