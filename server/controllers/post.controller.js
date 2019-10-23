@@ -24,7 +24,6 @@ exports.getSinglePost = async (req, res) => {
 exports.addPost = async (req, res) => {
   try {
     const { title, author, content } = req.body;
-
     let newPost = new Post();
     newPost.title = title;
     newPost.author = author;
