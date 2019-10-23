@@ -10,7 +10,7 @@ class SinglePost extends React.Component {
     loadSinglePost();
   }
   render() {
-    const { post, request } = this.props;
+    const { post, request, postId } = this.props;
     return (
       <div>
         {(request.pending || request.success === null) && <Spinner />}
@@ -18,7 +18,9 @@ class SinglePost extends React.Component {
         {!request.pending && request.success && (Object.entries(post).length === 0 && post.constructor === Object) && (
           <Alert variant="info">No post</Alert>
         )}
-        {!request.pending && request.success && Object.entries(post).length !== 0 && <PostFull post={post} />}
+        {!request.pending && request.success && Object.entries(post).length !== 0 && (
+          <PostFull post={post} postId={postId} />
+        )}
       </div>
     );
   }

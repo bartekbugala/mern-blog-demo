@@ -59,6 +59,18 @@ export const addPostRequest = post => {
   };
 };
 
+export const deletePostRequest = id => {
+  return async dispatch => {
+    dispatch(startUpdateRequest());
+    try {
+      await axios.delete(`${API_URL}/posts/${id}`);
+      dispatch(endUpdateRequest());
+    } catch (e) {
+      dispatch(errorUpdateRequest(e.message));
+    }
+  };
+};
+
 //// Initial state
 const initialState = {
   data: [],
@@ -83,10 +95,12 @@ const createActionName = name => `app/${reducerName}/${name}`;
 // action exports
 export const LOAD_POSTS = createActionName('LOAD_POSTS');
 export const LOAD_SINGLE_POST = createActionName('LOAD_SINGLE_POST');
+
 export const START_REQUEST = createActionName('START_REQUEST');
 export const END_REQUEST = createActionName('END_REQUEST');
 export const RESET_REQUEST = createActionName('RESET_REQUEST');
 export const ERROR_REQUEST = createActionName('ERROR_REQUEST');
+
 export const START_UPDATE_REQUEST = createActionName('START_UPDATE_REQUEST');
 export const END_UPDATE_REQUEST = createActionName('END_UPDATE_REQUEST');
 export const RESET_UPDATE_REQUEST = createActionName('RESET_UPDATE_REQUEST');
