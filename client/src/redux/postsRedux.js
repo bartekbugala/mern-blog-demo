@@ -13,10 +13,8 @@ export const loadPostsRequest = () => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts`);
-      await new Promise((resolve, reject) => {
         dispatch(loadPosts(res.data));
         dispatch(endRequest());
-      });
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
@@ -28,10 +26,8 @@ export const loadSinglePostRequest = id => {
     dispatch(startRequest());
     try {
       let res = await axios.get(`${API_URL}/posts/${id}`);
-      await new Promise((resolve, reject) => {
         dispatch(loadSinglePost(res.data));
         dispatch(endRequest());
-      });
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
@@ -43,9 +39,7 @@ export const addPostRequest = post => {
     dispatch(startRequest());
     try {
       await axios.post(`${API_URL}/posts`, post);
-      await new Promise((resolve, reject) => {
         dispatch(endRequest());
-      });
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
