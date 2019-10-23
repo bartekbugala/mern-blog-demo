@@ -37,7 +37,6 @@ exports.addPost = async (req, res) => {
     res.status(500).json(err);
   }
 };
-<<<<<<< HEAD
 
 exports.editPost = async (req, res) => {
   try {
@@ -51,5 +50,3 @@ exports.editPost = async (req, res) => {
     res.status(500).json(err);
   }
 };
-=======
->>>>>>> 167b4eff11779e4a8e5cc5cac413adf1c951ff45
