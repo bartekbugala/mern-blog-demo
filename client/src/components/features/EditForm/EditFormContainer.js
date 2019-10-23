@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
-import { getRequest, updatePostRequest, resetRequest, getSinglePost } from '../../../redux/postsRedux';
+import {
+  getUpdateRequest,
+  updatePostRequest,
+  resetUpdateRequest /* , getSinglePost */
+} from '../../../redux/postsRedux';
 import EditForm from './EditForm';
 
-const mapStateToProps = state => ({
-  request: getRequest(state),
-  post: getSinglePost(state)
+const mapStateToProps = (state, ownProps) => ({
+  updateRequest: getUpdateRequest(state),
+  post: ownProps.post
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   updatePost: post => dispatch(updatePostRequest(post, ownProps.postId)),
-  resetRequest: () => dispatch(resetRequest())
+  resetRequest: () => dispatch(resetUpdateRequest())
 });
 
 export default connect(
