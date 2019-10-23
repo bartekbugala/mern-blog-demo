@@ -15,7 +15,7 @@ class DeletePost extends React.Component {
     return (
       <div>
         {request.pending && request.success === null && <Spinner />}
-        {request.error && request.pending === false && <Alert variant="error">Error: {request.error}</Alert>}
+        {request.error && request.pending === false && <Alert variant="error">Error: {request.error.data.error}</Alert>}
         {request.success && request.error === null && <Alert variant="info">Post Removed</Alert>}
       </div>
     );

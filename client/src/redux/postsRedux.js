@@ -54,19 +54,19 @@ export const addPostRequest = post => {
       await axios.post(`${API_URL}/posts`, post);
       dispatch(endRequest());
     } catch (e) {
-      dispatch(errorRequest(e.message));
+      dispatch(errorRequest(JSON.stringify(e)));
     }
   };
 };
 
 export const deletePostRequest = id => {
   return async dispatch => {
-    dispatch(startRequest());
+    dispatch(startUpdateRequest());
     try {
       await axios.delete(`${API_URL}/posts/${id}`);
-      dispatch(endRequest());
+      dispatch(endUpdateRequest());
     } catch (e) {
-      dispatch(errorRequest(e.message));
+      dispatch(errorUpdateRequest(e.response));
     }
   };
 };

@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
-import { getRequest, deletePostRequest, resetRequest } from '../../../redux/postsRedux';
+import { getUpdateRequest, deletePostRequest, resetUpdateRequest } from '../../../redux/postsRedux';
 import DeletePost from './DeletePost';
 
 const mapStateToProps = state => ({
-  request: getRequest(state)
+  request: getUpdateRequest(state)
 });
 const mapDispatchToProps = (dispatch, ownProps) => ({
   deletePost: () => dispatch(deletePostRequest(ownProps.match.params.id)),
-  resetRequest: () => dispatch(resetRequest())
+  resetRequest: () => dispatch(resetUpdateRequest())
 });
 
 export default connect(
