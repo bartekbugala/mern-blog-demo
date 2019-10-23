@@ -8,8 +8,11 @@ router.route('/posts').get(PostController.getPosts);
 
 router.route('/posts/:id').get(PostController.getSinglePost);
 
-// find and update one post
+// find and update post
 router.route('/posts/:id').patch(PostController.editPost);
+
+// find and delete post
+router.route('/posts/:id').delete(PostController.deletePost);
 
 // add posts
 router.route('/posts').post(PostController.addPost);

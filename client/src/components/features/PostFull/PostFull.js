@@ -15,6 +15,9 @@ const PostFull = ({ post, postId }) => (
         <Link to={`/posts/${postId}/edit`}>
           <Button variant="danger">Edit post</Button>
         </Link>
+        <Link to={`/posts/${postId}/delete`}>
+          <Button variant="error">Delete post</Button>
+        </Link>
       </article>
     </section>
   </div>

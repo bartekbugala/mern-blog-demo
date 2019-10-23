@@ -61,12 +61,12 @@ export const addPostRequest = post => {
 
 export const deletePostRequest = id => {
   return async dispatch => {
-    dispatch(startUpdateRequest());
+    dispatch(startRequest());
     try {
       await axios.delete(`${API_URL}/posts/${id}`);
-      dispatch(endUpdateRequest());
+      dispatch(endRequest());
     } catch (e) {
-      dispatch(errorUpdateRequest(e.message));
+      dispatch(errorRequest(e.message));
     }
   };
 };

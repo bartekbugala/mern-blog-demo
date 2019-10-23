@@ -50,3 +50,12 @@ exports.editPost = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+exports.deletePost = async (req, res) => {
+  try {
+    const postDeleted = await Post.findOneAndDelete({ id: req.params.id });
+    res.status(200).json(postDeleted);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};

@@ -12,6 +12,7 @@ import NotFound from './components/pages/NotFound/NotFoundPage';
 import NewPost from './components/pages/NewPost/NewPostPage';
 import SinglePost from './components/pages/SinglePost/SinglePostPage';
 import EditPost from './components/pages/EditPost/EditPostPage';
+import DeletePost from './components/features/DeletePost/DeletePostContainer';
 
 class App extends React.Component {
   render() {
@@ -25,6 +26,7 @@ class App extends React.Component {
             <Route path="/posts/new" exact component={NewPost} />
             <Route path="/posts/:id" exact component={SinglePost} />} />
             <Route path="/posts/:id/edit" exact component={EditPost} />} />
+            <Route path="/posts/:id/delete" exact component={DeletePost} />} />
             <Route component={NotFound} />
           </Switch>
         </MainLayout>
