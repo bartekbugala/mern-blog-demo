@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 import './Pagination.scss';
 
 class Pagination extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { presentPage: this.props.initialPage || 1 };
-  }
-
+  state = { presentPage: this.props.initialPage || 1 };
   changePage = newPage => {
     const { onPageChange } = this.props;
 
@@ -27,7 +23,7 @@ class Pagination extends React.Component {
           {[...Array(pages)].map((el, page) => (
             <li
               key={++page}
-              onClick={page => {
+              onClick={() => {
                 changePage(page);
               }}
               className={`pagination__list__item${page === presentPage ? ' pagination__list__item--active' : ''}`}
