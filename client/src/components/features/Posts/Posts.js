@@ -7,16 +7,16 @@ import Pagination from '../../common/Pagination/Pagination';
 
 class Posts extends React.Component {
   componentDidMount() {
-    const { loadPostsByPage } = this.props;
-    loadPostsByPage(1);
+    const { loadPostsByPage, initialPage, postsPerPage } = this.props;
+    loadPostsByPage(initialPage, postsPerPage);
   }
 
   loadPostsPage = page => {
-    const { loadPostsByPage } = this.props;
-    loadPostsByPage(page);
+    const { loadPostsByPage, postsPerPage } = this.props;
+    loadPostsByPage(page, postsPerPage);
   };
   render() {
-    const { posts, request, pages } = this.props;
+    const { posts, request, pages, pagination } = this.props;
     const { loadPostsPage } = this;
 
     return (
@@ -25,7 +25,7 @@ class Posts extends React.Component {
         {!request.pending && request.error !== null && <Alert variant="error">Error: {request.error}</Alert>}
         {!request.pending && request.success && posts.length === 0 && <Alert variant="info">No posts</Alert>}
         <PostsList posts={posts} />
-        <Pagination pages={pages} onPageChange={loadPostsPage} />
+        {pagination && <Pagination pages={pages} onPageChange={loadPostsPage} />}
       </div>
     );
   }
@@ -34,6 +34,9 @@ class Posts extends React.Component {
 Posts.propTypes = {
   pages: PropTypes.number.isRequired,
   request: PropTypes.object.isRequired,
+  initialPage: PropTypes.number.isRequired,
+  postsPerPage: PropTypes.number.isRequired,
+  pagination: PropTypes.bool.isRequired,
   posts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
