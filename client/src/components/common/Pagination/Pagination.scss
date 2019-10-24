@@ -32,6 +32,10 @@
       &--active {
         color: $color-primary;
       }
+
+      &--hidden {
+        visibility: hidden;
+      }
     }
   }
 }
