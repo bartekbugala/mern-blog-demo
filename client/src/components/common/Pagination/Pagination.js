@@ -5,11 +5,11 @@ import './Pagination.scss';
 
 class Pagination extends React.Component {
   state = { presentPage: this.props.initialPage || 1 };
-  changePage = newPage => {
+  changePage = page => {
     const { onPageChange } = this.props;
 
-    this.setState({ presentPage: newPage });
-    onPageChange(newPage);
+    this.setState({ presentPage: page });
+    onPageChange(page);
   };
 
   render() {
@@ -23,9 +23,7 @@ class Pagination extends React.Component {
           {[...Array(pages)].map((el, page) => (
             <li
               key={++page}
-              onClick={() => {
-                changePage(page);
-              }}
+              onClick={() => this.changePage(page)}
               className={`pagination__list__item${page === presentPage ? ' pagination__list__item--active' : ''}`}
             >
               {page}

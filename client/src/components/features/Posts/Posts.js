@@ -25,16 +25,15 @@ class Posts extends React.Component {
         {!request.pending && request.error !== null && <Alert variant="error">Error: {request.error}</Alert>}
         {!request.pending && request.success && posts.length === 0 && <Alert variant="info">No posts</Alert>}
         {!request.pending && request.success && posts.length > 0 && <PostsList posts={posts} />}
-        {!request.pending && request.success && posts.length > 0 && (
-          <Pagination pages={pages} onPageChange={loadPostsPage} />
-        )}
+        <Pagination pages={pages} onPageChange={loadPostsPage} />
       </div>
     );
   }
 }
 
 Posts.propTypes = {
-  pages: PropTypes.number,
+  pages: PropTypes.number.isRequired,
+  request: PropTypes.object.isRequired,
   posts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
