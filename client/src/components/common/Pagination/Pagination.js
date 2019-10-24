@@ -22,7 +22,7 @@ class Pagination extends React.Component {
       <div className="pagination">
         <ul className="pagination__list">
           <li
-            className={`pagination__list__item${presentPage > 1 ? ' pagination__list__item--hidden' : ''}`}
+            className={`pagination__list__item${presentPage === 1 ? ' pagination__list__item--hidden' : ''}`}
             onClick={() => changePage(presentPage - 1)}
           >
             <MdKeyboardArrowLeft />
@@ -39,7 +39,7 @@ class Pagination extends React.Component {
           ))}
 
           <li
-            className={`pagination__list__item${presentPage < pages ? ' pagination__list__item--hidden' : ''}`}
+            className={`pagination__list__item${presentPage === pages ? ' pagination__list__item--hidden' : ''}`}
             onClick={() => changePage(presentPage + 1)}
           >
             <MdKeyboardArrowRight />
