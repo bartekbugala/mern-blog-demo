@@ -24,7 +24,7 @@ class Posts extends React.Component {
         {(request.pending || request.success === null) && <Spinner />}
         {!request.pending && request.error !== null && <Alert variant="error">Error: {request.error}</Alert>}
         {!request.pending && request.success && posts.length === 0 && <Alert variant="info">No posts</Alert>}
-        {!request.pending && request.success && posts.length > 0 && <PostsList posts={posts} />}
+        <PostsList posts={posts} />
         <Pagination pages={pages} onPageChange={loadPostsPage} />
       </div>
     );

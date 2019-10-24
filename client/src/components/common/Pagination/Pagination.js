@@ -13,7 +13,7 @@ class Pagination extends React.Component {
   };
 
   render() {
-    const { pages, onPageChange } = this.props;
+    const { pages } = this.props;
     const { presentPage } = this.state;
     const { changePage } = this;
 
@@ -23,7 +23,7 @@ class Pagination extends React.Component {
           {[...Array(pages)].map((el, page) => (
             <li
               key={++page}
-              onClick={() => this.changePage(page)}
+              onClick={() => changePage(page)}
               className={`pagination__list__item${page === presentPage ? ' pagination__list__item--active' : ''}`}
             >
               {page}
