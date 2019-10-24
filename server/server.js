@@ -20,7 +20,6 @@ app.use(express.json());
 app.use('/api', postRoutes);
 app.use((req, res, next) => {
   mongoSanitize(req.body);
-  console.log('req.body sanitized');
   next();
 });
 
