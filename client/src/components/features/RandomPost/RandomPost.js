@@ -4,7 +4,6 @@ import PostFull from '../PostFull/PostFull';
 import Spinner from '../../common/Spinner/Spinner';
 import Alert from '../../common/Alert/Alert';
 import Button from '../../common/Button/Button';
-import { Link } from 'react-router-dom';
 
 class RandomPost extends React.Component {
   state = { counter: 0 };
@@ -33,7 +32,7 @@ class RandomPost extends React.Component {
         <Button variant="primary" onClick={this.reload}>
           Random: {this.state.counter}
         </Button>
-        <PostFull post={post} />
+        <PostFull post={post} postId={post.id} />
       </div>
     );
   }

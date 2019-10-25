@@ -4,11 +4,14 @@ import MainMenu from '../../layout/MainMenu/MainMenu';
 import './NavBar.scss';
 
 class NavBar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     links: [
       { path: '/', title: 'Home' },
       { path: '/posts/new', title: 'Add post' },
-      { path: '/posts/random', title: 'Random post' },
+      { path: `/posts/random`, title: 'Random post' },
       { path: '/posts', title: 'Posts' },
       { path: '/contact', title: 'Contact' }
     ]

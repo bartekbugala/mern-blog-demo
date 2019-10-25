@@ -2,7 +2,7 @@ import React from 'react';
 import PageTitle from '../../common/PageTitle/PageTitle';
 import RandomPost from '../../features/RandomPost/RandomPostContainer';
 
-const RandomPostPage = () => (
+const RandomPostPage = props => (
   <div>
     <PageTitle>Random Post</PageTitle>
     <RandomPost />
