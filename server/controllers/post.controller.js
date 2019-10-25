@@ -20,6 +20,26 @@ exports.getSinglePost = async (req, res) => {
   }
 };
 
+// get posts by range
+exports.getPostsByRange = async function(req, res) {
+  try {
+    let { startAt, limit } = req.params;
+
+    startAt = parseInt(startAt);
+    limit = parseInt(limit);
+    const posts = await Post.find()
+      .skip(startAt)
+      .limit(limit);
+    // return total amount of documents in collection
+    const amount = await Post.countDocuments();
+
+    // response: posts within range and total amount of posts
+    res.status(200).json({ posts, amount });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 //add new post
 exports.addPost = async (req, res) => {
   try {
