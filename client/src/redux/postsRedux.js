@@ -59,21 +59,13 @@ export const loadPostsByPageRequest = (page, postsPerPage) => {
   };
 };
 
-export const loadRandomPostRequest = (amount = 2) => {
+export const loadRandomPostRequest = () => {
   return async dispatch => {
     dispatch(startRequest());
     try {
-      const startAt = Math.floor(Math.random() * amount + 1);
-      const limit = startAt;
+      let res = await axios.get(`${API_URL}/posts/random`);
 
-      let res = await axios.get(`${API_URL}/posts/range/${startAt}/${limit}`);
-
-      const payload = {
-        posts: res.data.posts,
-        amount: res.data.amount
-      };
-
-      dispatch(loadRandomPost(payload));
+      dispatch(loadRandomPost(res.data));
       dispatch(endRequest());
     } catch (e) {
       dispatch(errorRequest(e.message));
@@ -147,7 +139,7 @@ export default function reducer(statePart = initialState, action = {}) {
         data: [...action.payload.posts]
       };
     case LOAD_RANDOM_POST:
-      return { ...statePart, singlePost: action.payload.posts[0], amount: action.payload.amount };
+      return { ...statePart, singlePost: action.payload };
     case START_REQUEST:
       return { ...statePart, request: { pending: true, error: null, success: null } };
     case END_REQUEST:
