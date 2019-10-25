@@ -5,12 +5,20 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import './Pagination.scss';
 
 class Pagination extends React.Component {
-  state = { presentPage: this.props.initialPage || 1 };
-  changePage = page => {
-    const { onPageChange } = this.props;
+    state = {presentPage: this.props.presentPage || (this.props.initialPage || 1)}
 
-    this.setState({ presentPage: page });
-    onPageChange(page);
+
+  changePage = page => {
+    // for lifted up state
+    if (this.props.presentPage) {
+      this.props.onPageChange(page)
+    } 
+    // for local state
+    else {
+      const {onPageChange} = this.props
+      this.setState({presentPage: page})
+      onPageChange(page)
+    }
   };
 
   render() {
@@ -52,7 +60,7 @@ class Pagination extends React.Component {
 
 Pagination.propTypes = {
   pages: PropTypes.number.isRequired,
-  initialPage: PropTypes.number,
+  initialPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired
 };
 
