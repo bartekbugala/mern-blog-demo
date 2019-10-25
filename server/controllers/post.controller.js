@@ -73,3 +73,27 @@ exports.addPost = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+exports.editPost = async (req, res) => {
+  try {
+    const { title, author, content } = req.body;
+    const postUpdated = await Post.findOneAndUpdate(
+      { id: req.params.id },
+      { title: title, author: author, content: content }
+    );
+    res.status(200).json(postUpdated);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+exports.deletePost = async (req, res) => {
+  try {
+    const postDeleted = await Post.findOneAndDelete({ id: req.params.id });
+    if (postDeleted === null) {
+      res.status(404).json({ error: 'already deleted' });
+    } else res.status(200).json(postDeleted);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};

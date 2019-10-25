@@ -1,10 +1,10 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import PostFull from '../PostFull/PostFull';
+import EditForm from '../EditForm/EditFormContainer';
 import Spinner from '../../common/Spinner/Spinner';
 import Alert from '../../common/Alert/Alert';
 
-class SinglePost extends React.Component {
+class EditPost extends React.Component {
   componentDidMount() {
     const { loadSinglePost } = this.props;
     loadSinglePost();
@@ -19,14 +19,14 @@ class SinglePost extends React.Component {
           <Alert variant="info">No post</Alert>
         )}
         {!request.pending && request.success && Object.entries(post).length !== 0 && (
-          <PostFull post={post} postId={postId} />
+          <EditForm post={post} postId={postId} />
         )}
       </div>
     );
   }
 }
 
-SinglePost.propTypes = {
+EditPost.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.string,
     author: PropTypes.string,
@@ -36,4 +36,4 @@ SinglePost.propTypes = {
   loadSinglePost: PropTypes.func.isRequired
 };
 
-export default SinglePost;
+export default EditPost;
