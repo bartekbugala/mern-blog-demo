@@ -6,8 +6,4 @@ const mapStateToProps = state => ({
   postsCount: countPosts(state)
 });
 
-/* const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadSinglePost: () => dispatch(loadSinglePostRequest(ownProps.postId))
-}); */
-
 export default connect(mapStateToProps)(PostsCoutner);
