@@ -20,6 +20,22 @@ exports.getSinglePost = async (req, res) => {
   }
 };
 
+// get random post
+exports.getRandomPost = async (req, res) => {
+  try {
+    Post.count().exec(function(err, count) {
+      const random = Math.floor(Math.random() * count);
+      Post.findOne()
+        .skip(random)
+        .exec(function(err, result) {
+          res.status(200).json(result);
+        });
+    });
+  } catch (err) {
+    res.status(500).res.json(err);
+  }
+};
+
 // get posts by range
 exports.getPostsByRange = async function(req, res) {
   try {
