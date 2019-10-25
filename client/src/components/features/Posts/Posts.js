@@ -6,6 +6,9 @@ import Alert from '../../common/Alert/Alert';
 import Pagination from '../../common/Pagination/Pagination';
 
 class Posts extends React.Component {
+  state = {
+    presentPage: this.props.initialPage || 1
+  }
   componentDidMount() {
     const { loadPostsByPage, initialPage, postsPerPage } = this.props;
     loadPostsByPage(initialPage, postsPerPage);
@@ -14,18 +17,23 @@ class Posts extends React.Component {
   loadPostsPage = page => {
     const { loadPostsByPage, postsPerPage } = this.props;
     loadPostsByPage(page, postsPerPage);
-  };
-  render() {
-    const { posts, request, pages, pagination } = this.props;
-    const { loadPostsPage } = this;
+    this.setState({
+      presentPage: page
+    })
+  }
 
+  render() {
+    const { posts, pages, pagination, request, initialPage } = this.props;
+    const { loadPostsPage } = this;
+    const {presentPage} = this.state
     return (
+     
       <div>
-        {(request.pending || request.success === null) && <Spinner />}
-        {!request.pending && request.error !== null && <Alert variant="error">Error: {request.error}</Alert>}
+        {(request.pending) && <Spinner />}
+        {!request.pending && request.error !== null && <Alert variant="error">{`Error: ${request.error}`}</Alert>}
         {!request.pending && request.success && posts.length === 0 && <Alert variant="info">No posts</Alert>}
-        <PostsList posts={posts} />
-        {pagination && <Pagination pages={pages} onPageChange={loadPostsPage} />}
+        {!request.pending && request.success && posts.length > 0 && <PostsList posts={posts} />}
+        {pagination && !request.pending && request.success && <Pagination presentPage={presentPage} initialPage={initialPage} pages={pages} onPageChange={loadPostsPage}/>}
       </div>
     );
   }
