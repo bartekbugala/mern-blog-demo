@@ -23,7 +23,7 @@ exports.getSinglePost = async (req, res) => {
 // get random post
 exports.getRandomPost = async (req, res) => {
   try {
-    Post.count().exec(function(err, count) {
+    Post.countDocuments().exec(function(err, count) {
       const random = Math.floor(Math.random() * count);
       Post.findOne()
         .skip(random)

@@ -4,6 +4,8 @@ const config = require('./config');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 
+mongoose.set('useFindAndModify', false);
+
 const mongoSanitize = require('mongo-sanitize');
 
 const loadTestData = require('./testData');
