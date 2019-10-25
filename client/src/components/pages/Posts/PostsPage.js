@@ -8,7 +8,7 @@ const PostsPage = () => (
   <div>
     <PageTitle>Posts List</PageTitle>
     <PostsCounter />
-    <Posts />
+    <Posts initialPage={1} postsPerPage={10} pagination={true} />
   </div>
 );
 
