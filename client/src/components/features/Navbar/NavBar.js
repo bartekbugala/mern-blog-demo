@@ -4,9 +4,6 @@ import MainMenu from '../../layout/MainMenu/MainMenu';
 import './NavBar.scss';
 
 class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     links: [
       { path: '/', title: 'Home' },
