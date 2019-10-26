@@ -33,7 +33,7 @@ class RandomPost extends React.Component {
           <Alert variant="info">No post</Alert>
         )}
 
-        {!request.pending && request.success && <PostFull post={post} postId={post.id} />}
+        {!request.pending && request.success && <PostFull post={post} />}
       </div>
     );
   }
