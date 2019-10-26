@@ -14,11 +14,6 @@ import './PostForm.scss';
 
 class PostForm extends React.Component {
   state = {
-    request: {
-      success: null,
-      error: null,
-      pending: false
-    },
     post: {
       title: '',
       author: '',
@@ -26,12 +21,6 @@ class PostForm extends React.Component {
     }
   };
   componentDidMount() {
-    const request = {
-      success: null,
-      error: null,
-      pending: false
-    };
-    this.setState({ request });
     const { resetRequest } = this.props;
     resetRequest();
   }
@@ -54,15 +43,14 @@ class PostForm extends React.Component {
       return;
     }
     addPost(post);
-    this.setState({ request });
   };
 
   render() {
     const { post } = this.state;
     const { handleChange, handleEditor, postAdd } = this;
-    const { request } = this.state;
+    const { request } = this.props;
 
-    if (request.error) return <Alert variant="error">{request.error}</Alert>;
+    if (request.error) return <Alert variant="error">{`${request.error}`}</Alert>;
     else if (request.success) return <Alert variant="success">Post has been added!</Alert>;
     else if (request.pending) return <Spinner />;
     else
