@@ -49,7 +49,7 @@ class PostForm extends React.Component {
     const { handleChange, handleEditor, addPost } = this;
     const { request } = this.props;
 
-    if (request.error) return <Alert variant="error">{request.error}</Alert>;
+    if (request.error) return <Alert variant="error">{`${request.error}`}</Alert>;
     else if (request.success) return <Alert variant="success">Post has been added!</Alert>;
     else if (request.pending) return <Spinner />;
     else
