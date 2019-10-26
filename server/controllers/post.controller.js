@@ -91,8 +91,9 @@ exports.deletePost = async (req, res) => {
   try {
     const postDeleted = await Post.findOneAndDelete({ id: req.params.id });
     if (postDeleted === null) {
-      let err = { error: 'already deleted' };
-      throw err;
+      let err = { error: 'not in database' };
+      //throw err;
+      res.status(204).json(err);
     } else res.status(200).json(postDeleted);
   } catch (err) {
     res.status(500).json(err);
