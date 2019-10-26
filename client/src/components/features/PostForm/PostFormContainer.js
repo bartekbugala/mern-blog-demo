@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addPost: post => dispatch(addPostRequest(post)),
-  resetRequest: post => dispatch(resetRequest(post))
+  resetRequest: () => dispatch(resetRequest())
 });
 
 export default connect(
