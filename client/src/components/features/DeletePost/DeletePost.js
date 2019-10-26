@@ -7,15 +7,16 @@ class DeletePost extends React.Component {
   componentDidMount() {
     const { deletePost } = this.props;
     deletePost();
-    const { resetRequest } = this.props;
-    resetRequest();
   }
   render() {
     const { request } = this.props;
+    console.log(request);
     return (
       <div>
         {request.pending && request.success === null && <Spinner />}
-        {request.error && request.pending === false && <Alert variant="error">{`Error: ${request.error.data.error}`}</Alert>}
+        {request.error && request.pending === false && (
+          <Alert variant="error">{`Error: ${request.error.data.error}`}</Alert>
+        )}
         {request.success && request.error === null && <Alert variant="info">Post Removed</Alert>}
       </div>
     );
