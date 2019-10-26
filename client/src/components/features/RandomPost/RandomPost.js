@@ -24,14 +24,15 @@ class RandomPost extends React.Component {
 
     return (
       <div>
+        <Button variant="primary" onClick={this.reload}>
+          Random: {this.state.counter}
+        </Button>
         {(request.pending || request.success === null) && <Spinner />}
         {!request.pending && request.error !== null && <Alert variant="error">{`Error: ${request.error}`}</Alert>}
         {!request.pending && request.success && (Object.entries(post).length === 0 && post.constructor === Object) && (
           <Alert variant="info">No post</Alert>
         )}
-        <Button variant="primary" onClick={this.reload}>
-          Random: {this.state.counter}
-        </Button>
+
         {!request.pending && request.success && <PostFull post={post} postId={post.id} />}
       </div>
     );

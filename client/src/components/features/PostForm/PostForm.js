@@ -14,6 +14,11 @@ import './PostForm.scss';
 
 class PostForm extends React.Component {
   state = {
+    request: {
+      success: null,
+      error: null,
+      pending: false
+    },
     post: {
       title: '',
       author: '',
@@ -21,6 +26,12 @@ class PostForm extends React.Component {
     }
   };
   componentDidMount() {
+    const request = {
+      success: null,
+      error: null,
+      pending: false
+    };
+    this.setState({ request });
     const { resetRequest } = this.props;
     resetRequest();
   }
@@ -29,32 +40,34 @@ class PostForm extends React.Component {
     const { post } = this.state;
     this.setState({ post: { ...post, [e.target.name]: e.target.value } });
   };
+
   handleEditor = text => {
     const { post } = this.state;
     this.setState({ post: { ...post, content: text.trim() } });
   };
 
-  addPost = e => {
+  postAdd = e => {
     e.preventDefault();
-    const { addPost } = this.props;
+    const { addPost, request } = this.props;
     const { post } = this.state;
     if (post.content.trim().length === 0 || post.content === '<p><br></p>') {
       return;
     }
     addPost(post);
+    this.setState({ request });
   };
 
   render() {
     const { post } = this.state;
-    const { handleChange, handleEditor, addPost } = this;
-    const { request } = this.props;
+    const { handleChange, handleEditor, postAdd } = this;
+    const { request } = this.state;
 
-    if (request.error) return <Alert variant="error">{`${request.error}`}</Alert>;
+    if (request.error) return <Alert variant="error">{request.error}</Alert>;
     else if (request.success) return <Alert variant="success">Post has been added!</Alert>;
     else if (request.pending) return <Spinner />;
     else
       return (
-        <form onSubmit={addPost}>
+        <form onSubmit={postAdd}>
           <TextField label="Title" value={post.title} onChange={handleChange} name="title" required />
           <TextField label="Author" value={post.author} onChange={handleChange} name="author" required />
           <SectionTitle>Edit post content</SectionTitle>
