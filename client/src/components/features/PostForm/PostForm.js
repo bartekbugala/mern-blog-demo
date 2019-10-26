@@ -14,6 +14,7 @@ import './PostForm.scss';
 
 class PostForm extends React.Component {
   state = {
+    isSent: false,
     post: {
       title: '',
       author: '',
@@ -37,21 +38,22 @@ class PostForm extends React.Component {
 
   postAdd = e => {
     e.preventDefault();
-    const { addPost, request } = this.props;
+    const { addPost } = this.props;
     const { post } = this.state;
     if (post.content.trim().length === 0 || post.content === '<p><br></p>') {
       return;
     }
-    addPost(post);
+    addPost(post).then(this.setState({ isSent: true }));
   };
 
   render() {
     const { post } = this.state;
+    const isSent = this.state.isSent;
     const { handleChange, handleEditor, postAdd } = this;
     const { request } = this.props;
 
     if (request.error) return <Alert variant="error">{`${request.error}`}</Alert>;
-    else if (request.success) return <Alert variant="success">Post has been added!</Alert>;
+    else if (request.success && isSent) return <Alert variant="success">Post has been added!</Alert>;
     else if (request.pending) return <Spinner />;
     else
       return (
