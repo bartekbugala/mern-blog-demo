@@ -54,7 +54,7 @@ class EditForm extends React.Component {
     const { handleChange, handleEditor, updatePost } = this;
     const { updateRequest } = this.props;
 
-    if (updateRequest.error) return <Alert variant="error">{updateRequest.error}</Alert>;
+    if (updateRequest.error) return <Alert variant="error">{`${updateRequest.error}`}</Alert>;
     if (updateRequest.success) return <Alert variant="success">Post has been updated!</Alert>;
     else if (updateRequest.pending) return <Spinner />;
     else
