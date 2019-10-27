@@ -5,6 +5,7 @@ const loadTestData = async () => {
   const data = [
     {
       id: uuid(),
+      votes: 0,
       author: 'Robin of Locksley',
       title: 'How do I get funding for my startup?',
       content:
@@ -12,6 +13,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Guy of Gisborne',
       title: '10 Brilliant Small Bussiness Ideas',
       content:
@@ -19,6 +21,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Sheriff of Nottingham',
       title: 'How do I get funding for my startup?',
       content:
@@ -26,6 +29,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Marion',
       title: 'How do I get funding for my startup?',
       content:
@@ -33,6 +37,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Darth Vader',
       title: '10 Brilliant Small Bussiness Ideas',
       content:
@@ -40,6 +45,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Arwen Udomiel',
       title: 'How do I get funding for my startup?',
       content:
@@ -47,6 +53,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Legolas of Mirkwood',
       title: 'How do I get funding for my startup?',
       content:
@@ -54,6 +61,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Gimli son of Gloin',
       title: '10 Brilliant Small Bussiness Ideas',
       content:
@@ -61,6 +69,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Littlefinger',
       title: 'How do I get funding for my startup?',
       content:
@@ -68,6 +77,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Rob Stark',
       title: 'How do I get funding for my startup?',
       content:
@@ -75,6 +85,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'R2D2',
       title: '10 Brilliant Small Bussiness Ideas',
       content:
@@ -82,6 +93,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Optimus Prime',
       title: 'How do I get funding for my startup?',
       content:
@@ -89,6 +101,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Asterix',
       title: 'How do I get funding for my startup?',
       content:
@@ -96,6 +109,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Iron Man',
       title: '10 Brilliant Small Bussiness Ideas',
       content:
@@ -103,6 +117,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Janko Muzykant',
       title: 'How do I get funding for my startup?',
       content:
@@ -110,6 +125,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Peregrin Tuck',
       title: 'How do I get funding for my startup?',
       content:
@@ -117,6 +133,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Saruman the White',
       title: '10 Brilliant Small Bussiness Ideas',
       content:
@@ -124,6 +141,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Gandalf the Grey',
       title: 'How do I get funding for my startup?',
       content:
@@ -131,6 +149,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Haldir of Lorien',
       title: 'How do I get funding for my startup?',
       content:
@@ -138,6 +157,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Aragorn vel Strider',
       title: '10 Brilliant Small Bussiness Ideas',
       content:
@@ -145,6 +165,7 @@ const loadTestData = async () => {
     },
     {
       id: uuid(),
+      votes: 0,
       author: 'Spike Spiegel',
       title: 'How do I get funding for my startup?',
       content:

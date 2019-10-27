@@ -87,6 +87,15 @@ exports.editPost = async (req, res) => {
   }
 };
 
+exports.vote = async (req, res) => {
+  try {
+    const voted = await Post.findOneAndUpdate({ id: req.params.id }, { $inc: { votes: req.body.inc } });
+    res.status(200).json(voted);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 exports.deletePost = async (req, res) => {
   try {
     const postDeleted = await Post.findOneAndDelete({ id: req.params.id });

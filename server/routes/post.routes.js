@@ -18,6 +18,9 @@ router.route('/posts/:id').get(PostController.getSinglePost);
 // find and update post
 router.route('/posts/:id').patch(PostController.editPost);
 
+// find and vote up or down
+router.route('/posts/:id').put(PostController.vote);
+
 // find and delete post
 router.route('/posts/:id').delete(PostController.deletePost);
 

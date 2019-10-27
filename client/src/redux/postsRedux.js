@@ -86,6 +86,18 @@ export const updatePostRequest = (post, id) => {
   };
 };
 
+export const votePostRequest = (id, voteFactor) => {
+  return async dispatch => {
+    dispatch(startUpdateRequest());
+    try {
+      await axios.put(`${API_URL}/posts/${id}`, { inc: voteFactor });
+      dispatch(endUpdateRequest());
+    } catch (e) {
+      dispatch(errorUpdateRequest(e.message));
+    }
+  };
+};
+
 export const addPostRequest = post => {
   return async dispatch => {
     dispatch(startRequest());
