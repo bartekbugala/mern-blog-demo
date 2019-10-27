@@ -2,21 +2,9 @@
 
 ## A MERN stack project (Mongo, Express, React, Node.js)
 
-[Heroku deployment - demo -](https://mern-bb-blog.herokuapp.com)
+### [Heroku deployment - demo](https://mern-bb-blog.herokuapp.com)
 
-Development
-
-```
-yarn run dev
-```
-
-Production build client + Start server
-
-```
-yarn start
-```
-
-### FOR DEVELOPMENT
+### Production build client + Start server
 
 install dependecies
 
@@ -30,4 +18,16 @@ in mongoDB
 use mernapp
 ```
 
-[locally open http://localhost:8000/ -->](http://localhost:8000)
+Testing
+
+```
+yarn run start:server
+```
+
+build
+
+```
+yarn start
+```
+
+### [locally open http://localhost:8000/](http://localhost:8000)
