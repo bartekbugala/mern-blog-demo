@@ -1,5 +1,5 @@
 # Blog Post App
 
-## (A MERN stack project)
+## A MERN stack project (Mongo, Express, React, Node.js)
 
-Under development
+### [Heroku deployment - demo](https://mern-bb-blog.herokuapp.com)
